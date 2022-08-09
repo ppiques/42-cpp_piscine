@@ -25,7 +25,7 @@ class Fixed
 	Fixed();
 	Fixed(int const fractionnal_bits);
 	Fixed(float const fractionnal_bits);
-	Fixed(Fixed const &src);
+	Fixed(Fixed const &cpy);
 	~Fixed();
 
 	Fixed	&operator=(Fixed const &rhs);

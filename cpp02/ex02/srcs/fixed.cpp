@@ -32,9 +32,9 @@ Fixed::Fixed(const float float_value)
 	return;
 }
 
-Fixed::Fixed(Fixed const &src)
+Fixed::Fixed(Fixed const &cpy)
 {
-	*this = src;
+	*this = cpy;
 	return ;
 }
 

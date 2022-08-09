@@ -35,10 +35,10 @@ Fixed::Fixed(const float float_value)
 	return;
 }
 
-Fixed::Fixed(Fixed const &src)
+Fixed::Fixed(Fixed const &cpy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = src; // dereference to get the actual value and not the memory address
+	*this = cpy; // dereference to get the actual value and not the memory address
 	return ;
 }
 

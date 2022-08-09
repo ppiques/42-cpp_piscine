@@ -19,7 +19,7 @@ class Fixed
 	public :
 
 	Fixed();
-	Fixed(Fixed const &src); // copy constructor
+	Fixed(Fixed const &cpy); // copy constructor
 	~Fixed();
 
 	Fixed	&operator=(Fixed const &rhs); // surcharge de l'opérateur d'affectation (rhs : right_hand_side)
