@@ -14,6 +14,7 @@
 
 int	main()
 {
+	srand (time(NULL));
 	Bureaucrat	Bureaucrat1("Boss", 1);
 	Bureaucrat	Bureaucrat2("Minion", 150);
 	Bureaucrat	Bureaucrat3("toolow", 0);

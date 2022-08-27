@@ -15,34 +15,42 @@
 
 int	main()
 {
-	Bureaucrat	Bureaucrat1("Boss", 1);
-	Bureaucrat	Bureaucrat2("Minion", 150);
-	Bureaucrat	Bureaucrat3("Lieutenant", 35);
+	srand (time(NULL));
+	Bureaucrat	Boss("Boss", 1);
+	Bureaucrat	Minion("Minion", 150);
+	Bureaucrat	Ltn("Lieutenant", 35);
 	Form		form1("Form-1A", 45, 40);
-	Form		form2("Form-2A", 150, 151);
-	Form		form3("Form-1B", 0, 1);
+	Form		form2("Form-2A", 150, 151); // too low error
+	Form		form3("Form-1B", 0, 1); // too high error
+	Form		form4;
 
-	std::cout << Bureaucrat1;
-	std::cout << Bureaucrat2;
-	std::cout << Bureaucrat3;
+	std::cout << std::endl;
+
+	std::cout << Boss;
+	std::cout << Minion;
+	std::cout << Ltn;
 	std::cout << form1;
+	std::cout << form4;
+
+	std::cout << std::endl;
 
 	try
 	{
-	//	Bureaucrat2.signForm(form1);
-		Bureaucrat3.signForm(form1);
-		Bureaucrat1.signForm(form1);
+		Ltn.signForm(form1);
+		Boss.signForm(form1);
 	}
 	catch(const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
+
 	try
 	{
-		Bureaucrat2.signForm(form1);
-		Bureaucrat3.signForm(form1);
-		Bureaucrat1.signForm(form1);
+		Minion.signForm(form1); // should catch an error error, skipping the rest
+		Ltn.signForm(form1);
+		Boss.signForm(form1);
 	}
 	catch(const std::exception &e)
 	{

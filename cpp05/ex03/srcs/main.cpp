@@ -19,6 +19,7 @@
 
 int main()
 {
+	srand (time(NULL));
 	Intern someRandomIntern;
 	Bureaucrat Boss("Boss", 1);
 	Form* rrf;

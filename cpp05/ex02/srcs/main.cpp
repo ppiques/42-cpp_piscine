@@ -18,9 +18,10 @@
 
 int	main()
 {
-	Bureaucrat	Bureaucrat1("Boss", 1);
-	Bureaucrat	Bureaucrat2("Minion", 150);
-	Bureaucrat	Bureaucrat3("Lieutenant", 35);
+	srand (time(NULL));
+	Bureaucrat	Boss("Boss", 1);
+	Bureaucrat	Minion("Minion", 150);
+	Bureaucrat	Ltn("Lieutenant", 35);
 	Form		*RobotomyRequestForm = new class RobotomyRequestForm("Minion");
 	Form		*PresidentialForm = new PresidentialPardonForm("Lieutenant");
 	Form		*ShrubberyForm = new ShrubberyCreationForm("Boss");
@@ -30,10 +31,10 @@ int	main()
 		std::cout << "-----Robotomy Request Form-----" << std::endl;
 		std::cout << "Signature Grade : " << RobotomyRequestForm->getSignedGrade() << std::endl;
 		std::cout << "Execution Grade : " << RobotomyRequestForm->getExecGrade() << std::endl;
-		RobotomyRequestForm->beSigned(Bureaucrat1);
-		//	RobotomyRequestForm->beSigned(Bureaucrat2);
-		Bureaucrat1.executeForm(*RobotomyRequestForm);
-		RobotomyRequestForm->execute(Bureaucrat3);
+		RobotomyRequestForm->beSigned(Boss);
+		//	RobotomyRequestForm->beSigned(Minion); // should catch an error
+		Boss.executeForm(*RobotomyRequestForm);
+		RobotomyRequestForm->execute(Ltn);
 	}
 	catch(const std::exception &e)
 	{
@@ -47,10 +48,10 @@ int	main()
 		std::cout << "-----Shrubbery Creation Form-----" << std::endl;
 		std::cout << "Signature Grade : " << ShrubberyForm->getSignedGrade() << std::endl;
 		std::cout << "Execution Grade : " << RobotomyRequestForm->getExecGrade() << std::endl;
-		ShrubberyForm->beSigned(Bureaucrat3);
-		Bureaucrat3.executeForm(*ShrubberyForm);
-		ShrubberyForm->execute(Bureaucrat3);
-		// ShrubberyForm->execute(Bureaucrat2);
+		ShrubberyForm->beSigned(Ltn);
+		Ltn.executeForm(*ShrubberyForm);
+		ShrubberyForm->execute(Ltn);
+		// ShrubberyForm->execute(Minion); // should catch an error
 	}
 	catch(const std::exception &e)
 	{
@@ -64,10 +65,10 @@ int	main()
 		std::cout << "-----Presidential Pardon Form-----" << std::endl;
 		std::cout << "Signature Grade : " << PresidentialForm->getSignedGrade() << std::endl;
 		std::cout << "Execution Grade : " << PresidentialForm->getExecGrade() << std::endl;
-		// PresidentialForm->beSigned(Bureaucrat2);
-		PresidentialForm->beSigned(Bureaucrat1);
-		Bureaucrat1.executeForm(*PresidentialForm);
-		PresidentialForm->execute(Bureaucrat1);
+		// PresidentialForm->beSigned(Minion); // should catch an error
+		PresidentialForm->beSigned(Boss);
+		Boss.executeForm(*PresidentialForm);
+		PresidentialForm->execute(Boss);
 	}
 	catch(const std::exception &e)
 	{

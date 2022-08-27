@@ -47,7 +47,7 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
 	int	i;
 
-	i = rand() % 1;
+	i = rand() % 2;
 	this->checkIfExec(executor);
 	std::cout << "*drill noises...*" << std::endl;
 	if (i == 0)
