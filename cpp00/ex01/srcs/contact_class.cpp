@@ -39,19 +39,64 @@ void	Contact::add(int i)
 	Contact::index = i;
 	std::cout << "First name :" << std::endl;
 	std::getline(std::cin, this->first_name);
+	while (this->first_name.empty())
+	{
+		if(!std::cin)
+		{
+			system("clear");
+			break ;
+		}
+		std::cout <<"First Name cannot be empty, please try again" << std::endl;
+		std::getline(std::cin, this->first_name);
+	}
 	std::cout << "Last name :" << std::endl;
 	std::getline(std::cin, this->last_name);
+	while (this->last_name.empty())
+	{
+		if(!std::cin)
+		{
+			system("clear");
+			break ;
+		}		
+		std::cout <<"Last name cannot be empty, please try again" << std::endl;
+		std::getline(std::cin, this->last_name);
+	}
 	std::cout << "Nickname :" << std::endl;
 	std::getline(std::cin, this->nickname);
+	while (this->nickname.empty())
+	{
+		if(!std::cin)
+		{
+			system("clear");
+			break ;
+		}
+		std::cout <<"Nickname cannot be empty, please try again" << std::endl;
+		std::getline(std::cin, this->nickname);
+	}
 	std::cout << "Phone number :" << std::endl;
 	std::getline(std::cin, this->phone_number);
-	while (this->phone_number.find_first_not_of("0123456789") != std::string::npos)
+	while (this->phone_number.find_first_not_of("0123456789") != std::string::npos || this->phone_number.empty())
 	{
+		if(!std::cin)
+		{
+			system("clear");
+			break ;
+		}
 		std::cout <<"Invalid phone number, please try again" << std::endl;
 		std::getline(std::cin, this->phone_number);
 	}
 	std::cout << "Darkest secret :" << std::endl;
 	std::getline(std::cin, this->darkest_secret);
+	while (this->darkest_secret.empty())
+	{
+		if(!std::cin)
+		{
+			system("clear");
+			break ;
+		}
+		std::cout <<"Darkest secret cannot be empty, please try again" << std::endl;
+		std::getline(std::cin, this->darkest_secret);
+	}
 	system("clear");
 
 	return ;
