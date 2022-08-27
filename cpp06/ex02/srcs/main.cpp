@@ -13,7 +13,7 @@
 #include "truetype.hpp"
 
 int	main() {
-
+	srand(time(NULL));
 	Base *base;
 
 	std::cout << "------Ptr Tests------" << std::endl;
