@@ -34,6 +34,7 @@ class Span
 
 	void	addNumber(int value);
 	void	addRandomNumber(int min, int max);
+	void	addRandomNumbers(int min, int max, int nb);
 
 	private :
 

@@ -59,6 +59,18 @@ void	Span::addRandomNumber(int min, int max)
 	this->_container.push_back(random);
 }
 
+void	Span::addRandomNumbers(int min, int max, int nb)
+{
+	if (this->_container.size() >= this->_N + nb)
+		throw std::range_error("Error : No more room in container.");
+	while (nb >= 0)
+	{
+		int random = rand() % max + min;
+		this->_container.push_back(random);
+		nb--;
+	}
+}
+
 int	Span::shortestSpan(void) const
 {
 	std::vector<int>			tmp = this->_container;

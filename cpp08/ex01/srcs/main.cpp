@@ -14,6 +14,7 @@
 
 int	main()
 {
+	srand (time(NULL));
 	std::cout << "---BASIC TEST---" << std::endl;
 
 	Span sp = Span(5);
@@ -60,23 +61,22 @@ int	main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 
 	std::cout << std::endl;
 
 	try
 	{
-		Span bigsp = Span(10000);
-		for (int i = 0; i < 10000; i++)
-			bigsp.addRandomNumber(0, 100000);
+		Span bigsp = Span(10);
+		bigsp.addRandomNumbers(0, 100000, 10000);
 		
 		std::cout << "big-shortestSpan : " << bigsp.shortestSpan() << std::endl;
 		std::cout << "big-longestSpan : " << bigsp.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 	
 	std::cout << std::endl;
