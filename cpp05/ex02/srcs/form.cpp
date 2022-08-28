@@ -13,20 +13,20 @@
 #include "form.hpp"
 #include "bureaucrat.hpp"
 
-Form::Form() : _name("Undefined"), _signGrade(rand() % 150 + 1), _execGrade(rand() % 150 + 1)
+Form::Form() : _name("Undefined"), _execGrade(rand() % 150 + 1), _signGrade(rand() % 150 + 1)
 {
 	this->_signed = false;
 	return;
 }
 
-Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade)
+Form::Form(std::string name, int execGrade, int signGrade) : _name(name), _execGrade(execGrade), _signGrade(signGrade)
 {
 	this->_signed = false;
 	this->checkGrade();
 	return;
 }
 
-Form::Form(const Form &Form) : _name(Form.getName()), _signGrade(Form.getSignedGrade()), _execGrade(Form.getExecGrade())
+Form::Form(const Form &Form) : _name(Form.getName()), _execGrade(Form.getExecGrade()), _signGrade(Form.getSignedGrade())
 {
 	(*this) = Form;
 	return;

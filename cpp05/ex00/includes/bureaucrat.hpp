@@ -27,7 +27,7 @@ class Bureaucrat
 	Bureaucrat &operator=(const Bureaucrat &rhs);
 
 	std::string getName() const;
-	int	getGrade() const;
+	int			getGrade() const;
 
 	bool	GradeTooHighException(int grade);
 	bool	GradeTooLowException(int grade);
@@ -37,7 +37,7 @@ class Bureaucrat
 
 	private :
 
-	std::string const _name; // const name makes it hard to overload
+	std::string const _name; // const name makes it annoying to set
 	int			_grade;
 };
 

@@ -24,7 +24,7 @@ int	main()
 	Bureaucrat	Ltn("Lieutenant", 35);
 	Form		*RobotomyRequestForm = new class RobotomyRequestForm("Minion");
 	Form		*PresidentialForm = new PresidentialPardonForm("Lieutenant");
-	Form		*ShrubberyForm = new ShrubberyCreationForm("Boss");
+	Form		*ShrubberyForm = new ShrubberyCreationForm("Garden");
 
 	try
 	{
@@ -47,7 +47,7 @@ int	main()
 	{
 		std::cout << "-----Shrubbery Creation Form-----" << std::endl;
 		std::cout << "Signature Grade : " << ShrubberyForm->getSignedGrade() << std::endl;
-		std::cout << "Execution Grade : " << RobotomyRequestForm->getExecGrade() << std::endl;
+		std::cout << "Execution Grade : " << ShrubberyForm->getExecGrade() << std::endl;
 		ShrubberyForm->beSigned(Ltn);
 		Ltn.executeForm(*ShrubberyForm);
 		ShrubberyForm->execute(Ltn);

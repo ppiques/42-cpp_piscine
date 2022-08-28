@@ -32,6 +32,8 @@ int main()
 		delete rrf;
 	}
 
+	std::cout << std::endl;
+
 	rrf = someRandomIntern.makeForm("shrubbery creation form", "Boss");
 	if (rrf != NULL)
 	{
@@ -40,6 +42,8 @@ int main()
 		delete rrf;
 	}
 
+	std::cout << std::endl;
+
 	rrf = someRandomIntern.makeForm("presidential pardon form", "Boss");
 	if (rrf != NULL)
 	{
@@ -47,6 +51,8 @@ int main()
 		rrf->execute(Boss);
 		delete rrf;
 	}
+
+	std::cout << std::endl;
 
 	rrf = someRandomIntern.makeForm("Formol", "Boss");
 

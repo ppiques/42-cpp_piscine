@@ -18,12 +18,14 @@
 
 class Bureaucrat;
 
+class Bureaucrat;
+
 class Form
 {
 	public :
 
 	Form();
-	Form(std::string name, int execGrade, int signGrade);
+	Form(std::string name, int signGrade, int execGrade);
 	Form(const Form &cpy);
 	virtual ~Form();
 
@@ -74,8 +76,8 @@ class Form
 
 	std::string const	_name;
 	bool				_signed;
-	int const			_signGrade;
 	int const			_execGrade;
+	int const			_signGrade;
 
 };
 
