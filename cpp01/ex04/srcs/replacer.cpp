@@ -82,7 +82,7 @@ void	Replacer::replace_file(std::string filename, std::string s1, std::string s2
 		return ;
 	if (this->get_s1(s1) == 0)
 		return;
-	if (this->get_s2(s2) == false)
+	if (this->get_s2(s2) == 0)
 		return;
 	s1_len = s1.length();
 	this->new_file();

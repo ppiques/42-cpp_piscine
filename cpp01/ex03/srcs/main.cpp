@@ -19,7 +19,7 @@ int main()
 	{
 		Weapon club = Weapon("crude spiked club");
 
-		humanA bob("Philibert", club);
+		humanA bob("Bob", club);
 		bob.attack();
 		club.setType("steel club");
 		bob.attack();
@@ -29,7 +29,7 @@ int main()
 	{
 		Weapon club = Weapon("crude spiked club");
 
-		humanB jim("Ramirez");
+		humanB jim("Jim");
 		jim.setWeapon(club);
 		jim.attack();
 		club.setType("baseball bat");
