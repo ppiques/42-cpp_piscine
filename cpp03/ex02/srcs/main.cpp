@@ -20,6 +20,8 @@ int	main()
 	ScavTrap scavTrap2("Scav");
 	FragTrap fragTrap3("Frag");
 
+	std::cout << std::endl;
+
 	clapTrap1.attack("Scav");
 	scavTrap2.takeDamage(0);
 	clapTrap1.beRepaired(200);

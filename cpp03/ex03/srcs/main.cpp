@@ -22,6 +22,8 @@ int	main()
 	FragTrap fragTrap3("Frag");
 	DiamondTrap DiamondTrap4("Diamond");
 
+	std::cout << std::endl;
+
 	clapTrap1.attack("Scav");
 	scavTrap2.takeDamage(0);
 	clapTrap1.beRepaired(200);
