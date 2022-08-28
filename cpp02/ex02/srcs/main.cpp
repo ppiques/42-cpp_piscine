@@ -35,13 +35,31 @@ int main(void)
 	std::cout << "Now going through user tests" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << Fixed::min(a, b) << std::endl;
-	std::cout << a / 0 << std::endl;
-	std::cout << a / 1 << std::endl;
-	std::cout << a / 2 << std::endl;
-	std::cout << a * b << std::endl;
-	std::cout << a + 1 << std::endl;
-	std::cout << a - 1 << std::endl;
+	Fixed	c;
+
+	std::cout << c << std::endl;
+	std::cout << c++ << std::endl;
+	std::cout << --c << std::endl;
+	std::cout << c << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "a = "  << a << std::endl;
+	std::cout << "b = "  << b << std::endl;
+	std::cout << "min : " << Fixed::min(a, b) << std::endl;
+	std::cout << "max : " << Fixed::max(a, b) << std::endl;
+	std::cout << "c = " << ++c << std::endl;
+	std::cout << "a + c = "  << a + c << std::endl;
+	std::cout << "c = " << c << std::endl;
+	std::cout << "a - c = "  << ++a - c << std::endl;
+
+	std::cout << std::endl;
+
+	Fixed	d(10);
+	Fixed	e(5);
+
+	std::cout << "d / e = "  << d / e << std::endl;
+	std::cout << "d * e = "  << d * e << std::endl;
 
 	return 0;
 }

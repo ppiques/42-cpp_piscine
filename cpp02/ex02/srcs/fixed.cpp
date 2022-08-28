@@ -70,7 +70,7 @@ Fixed Fixed::operator/(Fixed const &rhs) const
 		std::cout << "Error : cannot divide by 0." << std::endl;
 		return (ret); 
 	}
-	ret._fixed_point = roundf((this->toFloat() * rhs.toFloat()) * 256);
+	ret._fixed_point = roundf((this->toFloat() / rhs.toFloat()) * 256);
 	return (ret);
 }
 

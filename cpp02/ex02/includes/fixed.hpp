@@ -29,6 +29,7 @@ class Fixed
 	~Fixed();
 
 	Fixed	&operator=(Fixed const &rhs);
+	
 	Fixed	operator*(Fixed const &rhs) const;
 	Fixed	operator/(Fixed const &rhs) const;
 	Fixed	operator+(Fixed const &rhs) const;

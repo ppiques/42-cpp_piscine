@@ -24,7 +24,7 @@ Fixed::Fixed(void)
 Fixed::Fixed(const int int_value)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->_fixed_point = int_value << this->_nb_fractional_bits;
+	this->_fixed_point = int_value << this->_nb_fractional_bits; // bitshift to the left https://docs.microsoft.com/fr-fr/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170
 	return;
 }
 
