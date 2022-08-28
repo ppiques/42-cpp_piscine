@@ -46,7 +46,7 @@ int main()
 	std::cout << std::endl;
 
 	for (int k = 0; k < 10; k++)
-		std::cout << k << " " << animals[k]->getType() << std::endl;
+		std::cout << k << " : " << animals[k]->getType() << std::endl;
 
 	std::cout << std::endl;
 

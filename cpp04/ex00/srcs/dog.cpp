@@ -14,21 +14,21 @@
 
 Dog::Dog()
 {
-	std::cout << "A new dog has been created" << std::endl;
+	std::cout << "A new Dog has been created" << std::endl;
 	this->type = "Dog";
 	return;
 }
 
 Dog::Dog(const Dog &Dog) : Animal(Dog)
 {
-	std::cout << "A new dog copy has been created" << std::endl;
+	std::cout << "A new Dog copy has been created" << std::endl;
 	this->type = Dog.type;
 	return;
 }
 
 Dog::~Dog()
 {
-	std::cout << "A dog has been destroyed" << std::endl;
+	std::cout << "A Dog has been destroyed" << std::endl;
 	return;
 }
 

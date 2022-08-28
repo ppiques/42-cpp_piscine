@@ -31,6 +31,7 @@ Dog::Dog(const Dog &Dog) : Animal(Dog)
 Dog::~Dog()
 {
 	std::cout << "A Dog has been destroyed" << std::endl;
+	delete this->_brain;
 	return;
 }
 
