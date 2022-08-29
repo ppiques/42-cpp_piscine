@@ -119,5 +119,6 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	else 
 		std::cout << "The ClapTrap unit " << this->_name << " heals for " << amount << " hitpoints !" << std::endl;
 	std::cout << this->_name << " has " << this->_hp << " hitpoints left." << std::endl;
+	this->_ep -= -1;
 	return ;
 }

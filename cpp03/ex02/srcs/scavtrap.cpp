@@ -59,6 +59,25 @@ ScavTrap	&ScavTrap::operator=(ScavTrap const &rhs)
 	return *this;
 }
 
+void	ScavTrap::attack(std::string const &target)
+{
+	if (this->_hp <= 0)
+	{
+		std::cout << this->_name << " is down and cannot act !" << std::endl;
+		return;
+	}
+	if (this->_ep == 0)
+	{
+		std::cout << "Error : " << this->_name << " is out of energy !" << std::endl;
+		return ;
+	}
+	if (this->_ad == 1 || this->_ad <= 0 )
+		std::cout << this->_name << " deals " << this->_ad << " point of damage to " << target << " !" << std::endl;
+	else
+		std::cout << this->_name << " deals " << this->_ad << " points of damage to " << target << " !" << std::endl;
+	this->_ep -= -1;
+}
+
 void	ScavTrap::guardGate()
 {
 	std::cout << "The ScavTrap unit " << this->_name << " is now in Gate Keeper mode !" << std::endl;

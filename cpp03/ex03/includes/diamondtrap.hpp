@@ -29,7 +29,6 @@ class DiamondTrap : public FragTrap, public ScavTrap // https://www.geeksforgeek
 	DiamondTrap	&operator=(DiamondTrap const &rhs);
 
 	void	whoAmI();
-	void	attack(std::string const &target);
 
 	private :
 
