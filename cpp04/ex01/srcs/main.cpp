@@ -55,8 +55,8 @@ int main()
 		if (k <= 4)
 		{
 			brain = animals[k]->getBrain();
-			brain->ideas[0] = "I'm happy !";
-			std::cout << animals[k]->getType() << " thinks : " << brain->ideas[0] << std::endl;
+			brain->ideas[99] = "I'm happy !";
+			std::cout << animals[k]->getType() << " thinks : " << brain->ideas[99] << std::endl;
 		}
 		else
 		{
@@ -71,5 +71,19 @@ int main()
 	for (int k = 0; k < 10; k++)
 		delete animals[k];
 
+	std::cout << std::endl;
+
+	std::cout << "----DEEP COPIES TEST----" << std::endl;
+
+	std::cout << std::endl;
+
+	Cat	cat;
+	Cat	cat2(cat);
+
+	std::cout << "CatRef : " << cat.getRef() << std::endl;
+	std::cout << "Cat2Ref : " << cat2.getRef() << std::endl;
+
+	std::cout << std::endl;
+	
 	return (0);
 }
