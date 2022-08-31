@@ -18,8 +18,6 @@
 
 class Bureaucrat;
 
-class Bureaucrat;
-
 class Form
 {
 	public :
@@ -69,6 +67,15 @@ class Form
 			virtual const char *what() const throw()
 			{
 				return ("The form cannot be executed.");
+			}
+	};
+
+	class UnsignedForm : public std::exception
+	{
+		public :
+			virtual const char *what() const throw()
+			{
+				return ("The form hasn't been signed.");
 			}
 	};
 

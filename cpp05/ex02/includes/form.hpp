@@ -70,6 +70,15 @@ class Form
 			}
 	};
 
+	class UnsignedForm : public std::exception
+	{
+		public :
+			virtual const char *what() const throw()
+			{
+				return ("The form hasn't been signed.");
+			}
+	};
+
 	private :
 
 	std::string const	_name;

@@ -37,11 +37,11 @@ Intern	&Intern::operator=(const Intern &rhs)
 Form	*Intern::makeForm(std::string formName, std::string formTarget)
 {
 	Form *formReturn = NULL;
-	t_formIntern formList[] =
+	t_formIntern formList[3] =
 	{
-		{"robotomy request form", new RobotomyRequestForm(formTarget)},
-		{"shrubbery creation form", new ShrubberyCreationForm(formTarget)},
-		{"presidential pardon form", new PresidentialPardonForm(formTarget)}
+		{"Robotomy Request Form", new RobotomyRequestForm(formTarget)},
+		{"Shrubbery Creation Form", new ShrubberyCreationForm(formTarget)},
+		{"Presidential Pardon Form", new PresidentialPardonForm(formTarget)}
 	};
 
 	for (int i = 0; i < 3 ; i++)

@@ -21,8 +21,11 @@ Form::Form() : _name("Undefined"), _signGrade(rand() % 150 + 1), _execGrade(rand
 
 Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade)
 {
+	if (signGrade < 1 || execGrade < 1)
+		throw GradeTooHighException();
+	else if (signGrade > 150 || execGrade > 150)
+		throw GradeTooLowException();
 	this->_signed = false;
-	this->checkGrade();
 	return;
 }
 
@@ -45,7 +48,11 @@ Form	&Form::operator=(const Form &rhs)
 
 std::ostream &operator<<(std::ostream &ostr, Form const &Form)
 {
-	ostr << "The " << Form.getName() << " form requires grade " << Form.getSignedGrade() << " to be signed and grade " << Form.getExecGrade() << " to be executed." << std::endl;
+	ostr << "The " << Form.getName() << " form requires grade " << Form.getSignedGrade() << " to be signed and grade " << Form.getExecGrade() << " to be executed.";
+	if (Form.getSigned() == true)
+		ostr << " It has been signed.";
+	else
+		ostr << " It has not been signed.";
 	return (ostr);
 }
 
@@ -74,27 +81,9 @@ void		Form::setSigned(bool isSigned)
 		this->_signed = isSigned;
 }
 
-void	Form::checkGrade() const
-{
-	try
-	{
-		if (this->_execGrade < 1 ||this->_signGrade < 1)
-			throw Form::GradeTooHighException();
-		if (this->_execGrade > 150 ||this->_signGrade > 150)
-			throw Form::GradeTooLowException();
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-}
-
 void	Form::beSigned(Bureaucrat const &Bureaucrat)
 {
-	if (Bureaucrat.getGrade() < this->getSignedGrade())
-		this->_signed = true;
-	else
-	{
-		this->_signed = false;
-	}
+	if (Bureaucrat.getGrade() <= this->getSignedGrade())
+		this->setSigned(true);
+	return;
 }

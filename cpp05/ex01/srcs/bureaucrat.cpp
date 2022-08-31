@@ -16,18 +16,20 @@
 Bureaucrat::Bureaucrat() : _name("Undefined")
 {
 	this->_grade = rand() % 150 + 1; // https://cplusplus.com/reference/cstdlib/rand/
+	std::cout << this->getName() << ", Bureaucrat grade " << this->getGrade() << std::endl;
 	return;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
-	this->GradeTooHighException(grade);
-	this->GradeTooLowException(grade);
-	this->_grade = grade;
+	if (grade < 1)
+		throw GradeTooHighException();
+	else if (grade > 150)
+		throw GradeTooLowException();
 	return;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &cpy) : _name(cpy.getName())
+Bureaucrat::Bureaucrat(const Bureaucrat &cpy) : _name(cpy.getName()), _grade(cpy.getGrade())
 {
 	(*this) = cpy;
 	return;
@@ -60,55 +62,27 @@ int	Bureaucrat::getGrade() const
 	return (this->_grade);
 }
 
-bool	Bureaucrat::GradeTooHighException(int grade)
-{
-	try
-	{
-		if (grade < 1)
-			throw std::exception();
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << "Bureaucrat grade is too high" << std::endl;
-		return (true);
-	}
-	return (false);
-}
-
-bool	Bureaucrat::GradeTooLowException(int grade)
-{
-	try
-	{
-		if (grade > 150)
-			throw std::exception();
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << "Bureaucrat grade is too low" << std::endl; 
-		return (true);
-	}
-	return (false);
-}
-
 void	Bureaucrat::IncrementGrade()
 {
-	if (this->GradeTooHighException(this->getGrade() - 1) == false)
+	if (this->getGrade() - 1 < 1)
 	{
-		std::cout << "Incrementing grade" << std::endl;
-		this->_grade--;
+		throw GradeTooHighException();
 	}
+	std::cout << "Incrementing grade" << std::endl;
+	this->_grade--;
 }
 
 void	Bureaucrat::DecrementGrade()
 {
-	if (this->GradeTooLowException(this->getGrade() + 1) == false)
+	if (this->getGrade() + 1 > 150)
 	{
-		std::cout << "Decrementing grade" << std::endl;
-		this->_grade++;
+		throw GradeTooLowException();
 	}
+	std::cout << "Decrementing grade" << std::endl;
+	this->_grade++;
 }
 
-bool	Bureaucrat::signForm(Form form)
+bool	Bureaucrat::signForm(Form &form)
 {
 	form.beSigned(*this);
 	if (form.getSigned() == true)

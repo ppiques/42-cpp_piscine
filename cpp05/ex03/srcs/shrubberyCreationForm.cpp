@@ -12,12 +12,12 @@
 
 #include "shrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("ShrubberyCreationForm", 137, 145), _target("Undefined"), _signGrade(145), _execGrade(137)
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("ShrubberyCreationForm", 145, 137), _target("Undefined"), _signGrade(145), _execGrade(137)
 {
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("ShrubberyCreationForm", 137, 145), _target(target), _signGrade(145), _execGrade(137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("ShrubberyCreationForm", 145, 137), _target(target), _signGrade(145), _execGrade(137)
 {
 	return;
 }
@@ -50,28 +50,33 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 
 	this->checkIfExec(executor);
 	outfile.open(fileName.c_str(), std::ios::out);
-	outfile << "                     / / /" << std::endl;
-	outfile << "                   /        /  /     //    /" << std::endl;
-	outfile << "                /                 /         /  /" << std::endl;
-	outfile << "                                /" << std::endl;
-	outfile << "                               /                //" << std::endl;
-	outfile << "               /          /            /              /" << std::endl;
-	outfile << "               /            '/,        /               /" << std::endl;
-	outfile << "               /              'b      *" << std::endl;
-	outfile << "                /              '$    //                //" << std::endl;
-	outfile << "               /    /           $:   /:               /" << std::endl;
-	outfile << "             //      /  //      */  @):        /   / /" << std::endl;
-	outfile << "                          /     :@,@):   ,/**:'   /" << std::endl;
-	outfile << "              /      /,         :@@*: //**'      /   /" << std::endl;
-	outfile << "                       '/o/    /:(@'/@*'  /" << std::endl;
-	outfile << "               /  /       'bq,//:,@@*'   ,*      /  /" << std::endl;
-	outfile << "                          ,p$q8,:@)'  /p*'      /" << std::endl;
-	outfile << "                   /     '  / '@@Pp@@*'    /  /" << std::endl;
-	outfile << "                    /  / //    Y7'.'     /  /" << std::endl;
-	outfile << "                              :@):." << std::endl;
-	outfile << "                             .:@:'." << std::endl;
-	outfile << "                           .::(@:.  " << std::endl;
+	if (outfile.is_open())
+	{
+		outfile << "                     / / /" << std::endl;
+		outfile << "                   /        /  /     //    /" << std::endl;
+		outfile << "                /                 /         /  /" << std::endl;
+		outfile << "                                /" << std::endl;
+		outfile << "                               /                //" << std::endl;
+		outfile << "               /          /            /              /" << std::endl;
+		outfile << "               /            '/,        /               /" << std::endl;
+		outfile << "               /              'b      *" << std::endl;
+		outfile << "                /              '$    //                //" << std::endl;
+		outfile << "               /    /           $:   /:               /" << std::endl;
+		outfile << "             //      /  //      */  @):        /   / /" << std::endl;
+		outfile << "                          /     :@,@):   ,/**:'   /" << std::endl;
+		outfile << "              /      /,         :@@*: //**'      /   /" << std::endl;
+		outfile << "                       '/o/    /:(@'/@*'  /" << std::endl;
+		outfile << "               /  /       'bq,//:,@@*'   ,*      /  /" << std::endl;
+		outfile << "                          ,p$q8,:@)'  /p*'      /" << std::endl;
+		outfile << "                   /     '  / '@@Pp@@*'    /  /" << std::endl;
+		outfile << "                    /  / //    Y7'.'     /  /" << std::endl;
+		outfile << "                              :@):." << std::endl;
+		outfile << "                             .:@:'." << std::endl;
+		outfile << "                           .::(@:.  " << std::endl;
 
-	outfile.close();
+		outfile.close();
+	}
+	else
+		std::cerr << "Error : couldn't open target" << std::endl;
 	return;
 }

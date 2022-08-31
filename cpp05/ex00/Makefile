@@ -25,14 +25,14 @@ FILE_NAMES	+= bureaucrat.cpp
 OBJ_NAMES	= ${FILE_NAMES:.cpp=.o}
 OBJS		= $(addprefix $(OBJ_DIR)/, $(OBJ_NAMES))
 
-CC			= c++
-CFLAGS		= -Wall -Wextra -Werror -std=c++98
+CXX				= c++
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 all:		${NAME}
 
 $(NAME):	${OBJS}
 			@echo "\033[1;34mCompiling $(NAME)...\033[0m"
-			@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 			@echo "\n\033[1;93mAll done !\033[0m\n"
 
 $(OBJ_DIR)/%.o :	$(FILE_DIR)/%.cpp ${INC_DIR}/*.hpp | $(OBJ_DIR)

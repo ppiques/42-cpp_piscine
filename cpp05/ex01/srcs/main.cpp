@@ -16,30 +16,131 @@
 int	main()
 {
 	srand (time(NULL));
-	Bureaucrat	Boss("Boss", 1);
-	Bureaucrat	Minion("Minion", 150);
-	Bureaucrat	Ltn("Lieutenant", 35);
-	Form		form1("Form-1A", 45, 40);
-	Form		form2("Form-2A", 150, 151); // too low error
-	Form		form3("Form-1B", 0, 1); // too high error
-	Form		form4;
+
+	std::cout << "----TEST CORRECT FORM----"<< std::endl;
+	try
+	{
+		Form f1("Form-1A", 75, 50);
+		std::cout << f1 << std::endl;	
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	try
+	{
+		Form f2("Form-2A", 12, 80);
+		std::cout << f2 << std::endl;	
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
 	std::cout << std::endl;
 
-	std::cout << Boss;
-	std::cout << Minion;
-	std::cout << Ltn;
-	std::cout << form1;
-	std::cout << form4;
+	std::cout << "----TEST INCORRECT FORM----"<< std::endl;
+	try
+	{
+		Form f12("Form-12A", 0, 50);
+		std::cout << f12 << std::endl;	
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
+	try
+	{
+		Form f3("Form-3A", 50, 153);
+		std::cout << f3 << std::endl;	
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		Form f4("Form-4A", 50, 0);
+		std::cout << f4 << std::endl;	
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		Form f5("Form-5A", 151, 120);
+		std::cout << f5 << std::endl;	
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << "----TEST FORM SIGNATURE WITH SIGNFORM----" << std::endl;
+
+	try
+	{
+		Bureaucrat Bureaucrat1("Boss", 1);
+		Form f7("Form-7A", 100, 100);
+		std::cout << f7;
+		Bureaucrat1.signForm(f7);
+		std::cout << f7;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
 	std::cout << std::endl;
 
 	try
 	{
-		Ltn.signForm(form1);
-		Boss.signForm(form1);
+		Bureaucrat Bureaucrat2("Minion", 150);
+		Form f8("Form-8A", 150, 100);
+		std::cout << f8;
+		Bureaucrat2.signForm(f8);
+		std::cout << f8;
 	}
-	catch(const std::exception &e)
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+
+	try
+	{
+		Bureaucrat Bureaucrat3("Minion", 150);
+		Form f9("Form-9A", 100, 100);
+		std::cout << f9;
+		Bureaucrat3.signForm(f9);
+		std::cout << f9;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << "----TEST FORM SIGNATURE WITH BESIGNED----" << std::endl;
+
+	try
+	{
+		Bureaucrat Bureaucrat4("Boss", 1);
+		Form f10("Form-10A", 100, 100);
+		std::cout << f10;
+		f10.beSigned(Bureaucrat4);
+		std::cout << f10;
+	}
+	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -48,11 +149,13 @@ int	main()
 
 	try
 	{
-		Minion.signForm(form1); // should catch an error error, skipping the rest
-		Ltn.signForm(form1);
-		Boss.signForm(form1);
+		Bureaucrat Bureaucrat5("Minion", 150);
+		Form f11("Form-11A", 100, 100);
+		std::cout << f11;
+		f11.beSigned(Bureaucrat5);
+		std::cout << f11;
 	}
-	catch(const std::exception &e)
+	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}

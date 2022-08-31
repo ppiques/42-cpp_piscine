@@ -31,20 +31,35 @@ class Bureaucrat
 	std::string getName() const;
 	int	getGrade() const;
 
-	bool	GradeTooHighException(int grade);
-	bool	GradeTooLowException(int grade);
-
 	void	IncrementGrade(void);
 	void	DecrementGrade(void);
 
-	bool	signForm(Form form);
+	bool	signForm(Form &form);
 
 	bool	executeForm(Form const &form);
 
 	private :
 
-	std::string const _name;
-	int			_grade;
+	std::string const 	_name;
+	int					_grade;
+
+	class GradeTooHighException : public std::exception
+	{
+		public :
+				virtual const char *what() const throw()
+				{
+					return ("Bureaucrat grade is too high !");
+				}
+	};
+
+	class GradeTooLowException : public std::exception
+	{
+		public :
+				virtual const char *what() const throw()
+				{
+					return ("Bureaucrat grade is too low !");
+				}
+	};
 };
 
 std::ostream &operator<<(std::ostream &ostr, Bureaucrat const &Bureaucrat);

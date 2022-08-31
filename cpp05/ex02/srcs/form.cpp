@@ -13,20 +13,23 @@
 #include "form.hpp"
 #include "bureaucrat.hpp"
 
-Form::Form() : _name("Undefined"), _execGrade(rand() % 150 + 1), _signGrade(rand() % 150 + 1)
+Form::Form() : _name("Undefined"), _signGrade(rand() % 150 + 1), _execGrade(rand() % 150 + 1)
 {
 	this->_signed = false;
 	return;
 }
 
-Form::Form(std::string name, int execGrade, int signGrade) : _name(name), _execGrade(execGrade), _signGrade(signGrade)
+Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade)
 {
+	if (signGrade < 1 || execGrade < 1)
+		throw GradeTooHighException();
+	else if (signGrade > 150 || execGrade > 150)
+		throw GradeTooLowException();
 	this->_signed = false;
-	this->checkGrade();
 	return;
 }
 
-Form::Form(const Form &Form) : _name(Form.getName()), _execGrade(Form.getExecGrade()), _signGrade(Form.getSignedGrade())
+Form::Form(const Form &Form) : _name(Form.getName()), _signGrade(Form.getSignedGrade()), _execGrade(Form.getExecGrade())
 {
 	(*this) = Form;
 	return;
@@ -45,7 +48,11 @@ Form	&Form::operator=(const Form &rhs)
 
 std::ostream &operator<<(std::ostream &ostr, Form const &Form)
 {
-	ostr << "The " << Form.getName() << " form requires grade " << Form.getSignedGrade() << " to be signed and grade " << Form.getExecGrade() << " to be executed." << std::endl;
+	ostr << "The " << Form.getName() << " form requires grade " << Form.getSignedGrade() << " to be signed and grade " << Form.getExecGrade() << " to be executed.";
+	if (Form.getSigned() == true)
+		ostr << " It has been signed.";
+	else
+		ostr << " It has not been signed.";
 	return (ostr);
 }
 
@@ -74,6 +81,13 @@ void		Form::setSigned(bool isSigned)
 		this->_signed = isSigned;
 }
 
+void	Form::beSigned(Bureaucrat const &Bureaucrat)
+{
+	if (Bureaucrat.getGrade() <= this->getSignedGrade())
+		this->setSigned(true);
+	return;
+}
+
 void	Form::checkGrade() const
 {
 	try
@@ -93,14 +107,4 @@ void	Form::checkIfExec(const Bureaucrat &executor) const
 {
 	if (this->_signed == false || executor.getGrade() > this->_execGrade)
 		throw Form::CannotExecute();
-}
-
-void	Form::beSigned(Bureaucrat const &Bureaucrat)
-{
-	if (Bureaucrat.getGrade() < this->getSignedGrade())
-		this->_signed = true;
-	else
-	{
-		this->_signed = false;
-	}
 }

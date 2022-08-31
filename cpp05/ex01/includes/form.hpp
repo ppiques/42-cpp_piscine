@@ -36,7 +36,6 @@ class Form
 
 	void		setSigned(bool isSigned);
 
-	void		checkGrade() const;
 	void		beSigned(Bureaucrat const &Bureaucrat);
 
 	class GradeTooHighException : public std::exception

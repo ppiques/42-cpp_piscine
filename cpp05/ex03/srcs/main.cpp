@@ -24,7 +24,7 @@ int main()
 	Bureaucrat Boss("Boss", 1);
 	Form* rrf;
 
-	rrf = someRandomIntern.makeForm("robotomy request form", "Boss");
+	rrf = someRandomIntern.makeForm("Robotomy Request Form", "Minion");
 	if (rrf != NULL)
 	{
 		rrf->beSigned(Boss);
@@ -34,7 +34,7 @@ int main()
 
 	std::cout << std::endl;
 
-	rrf = someRandomIntern.makeForm("shrubbery creation form", "Boss");
+	rrf = someRandomIntern.makeForm("Shrubbery Creation Form", "Garden");
 	if (rrf != NULL)
 	{
 		rrf->beSigned(Boss);
@@ -44,7 +44,7 @@ int main()
 
 	std::cout << std::endl;
 
-	rrf = someRandomIntern.makeForm("presidential pardon form", "Boss");
+	rrf = someRandomIntern.makeForm("Presidential Pardon Form", "Boss");
 	if (rrf != NULL)
 	{
 		rrf->beSigned(Boss);

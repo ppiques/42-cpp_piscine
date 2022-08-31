@@ -12,12 +12,12 @@
 
 #include "presidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : Form("PresidentialPardonForm", 5, 25), _target("Undefined"), _signGrade(25), _execGrade(5)
+PresidentialPardonForm::PresidentialPardonForm() : Form("PresidentialPardonForm", 25, 5), _target("Undefined"), _signGrade(25), _execGrade(5)
 {
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("PresidentialPardonForm", 5, 25), _target(target), _signGrade(25), _execGrade(5)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("PresidentialPardonForm", 25, 5), _target(target), _signGrade(25), _execGrade(5)
 {
 	return;
 }
@@ -46,5 +46,5 @@ std::string	PresidentialPardonForm::getTarget() const
 void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
 	this->checkIfExec(executor);
-	std::cout << executor.getName() << " was forgiven by Zaphod Beeblebrox" << std::endl;
+	std::cout << this->getTarget() << " was forgiven by Zaphod Beeblebrox" << std::endl;
 }
