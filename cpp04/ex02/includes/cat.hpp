@@ -25,7 +25,8 @@ class Cat : virtual public AAnimal
 
 	Cat &operator=(const Cat &rhs);
 
-	virtual Brain *getBrain(void) const;
+	void			*getRef();
+	virtual Brain	*getBrain(void) const;
 
 	virtual void makeSound() const;
 

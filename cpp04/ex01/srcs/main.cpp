@@ -22,6 +22,21 @@
 #include "wrongCat.hpp"
 #include "brain.hpp"
 
+// class TestCat // Extra class to test deep copies
+//  {
+//     public:
+
+// 		TestCat() : test(new int) { }
+// 		TestCat(const TestCat& copy): test(copy.test) { }
+// 		~TestCat() { }
+// 		void *getRef(void)
+// 		{
+// 			return test;
+// 		}
+
+// 		int *test;
+//  };
+
 int main()
 {
 	const Animal	*j = new Dog();
@@ -71,19 +86,24 @@ int main()
 	for (int k = 0; k < 10; k++)
 		delete animals[k];
 
-	std::cout << std::endl;
+	// std::cout << std::endl;
 
-	std::cout << "----DEEP COPIES TEST----" << std::endl;
+	// std::cout << "----DEEP COPIES TEST----" << std::endl;
 
-	std::cout << std::endl;
+	// std::cout << std::endl;
 
-	Cat	cat;
-	Cat	cat2(cat);
+	// Cat	cat;
+	// Cat	cat2(cat);
+	// TestCat TestCat1;
+    // TestCat TestCat2(TestCat1);
 
-	std::cout << "CatRef : " << cat.getRef() << std::endl;
-	std::cout << "Cat2Ref : " << cat2.getRef() << std::endl;
+	// std::cout << "CatRef : " << cat.getRef() << std::endl;
+	// std::cout << "Cat2Ref : " << cat2.getRef() << std::endl;
+    // std::cout << "TestCat1 : " << TestCat1.getRef() << std::endl;
+    // std::cout << "TestCat2 : " << TestCat2.getRef() << std::endl;
 
-	std::cout << std::endl;
+	// delete TestCat1.test;
+	// std::cout << std::endl;
 	
 	return (0);
 }

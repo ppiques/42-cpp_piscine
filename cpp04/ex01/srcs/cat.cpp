@@ -45,7 +45,7 @@ Cat &Cat::operator=(const Cat &rhs)
 
 void	*Cat::getRef()
 {
-	return &_brain;
+	return _brain;
 }
 
 Brain *Cat::getBrain(void) const

@@ -43,6 +43,11 @@ Cat &Cat::operator=(const Cat &rhs)
 	return (*this);
 }
 
+void	*Cat::getRef()
+{
+	return _brain;
+}
+
 Brain *Cat::getBrain(void) const
 {
 	return (this->_brain);
