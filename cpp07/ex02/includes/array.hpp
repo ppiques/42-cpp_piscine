@@ -20,22 +20,19 @@ class Array
 {
 	public :
 
-	Array<T>(void) : _size(0), _array(NULL)
+	Array<T>(void)
 	{
+		this->_size = 0;
+		this->_array = NULL;
 		return;
 	}
 
-	Array<T>(unsigned int n) : _size(n)
+	Array<T>(unsigned int n)
 	{
-		if (n <= 0)
-		{
-			this->_array = NULL;
-			throw std::range_error("Range Error");
-			return;
-		}
 		this->_array = new T[n];
-		for (int i = 0; i < this->_size; i++)
-			this->_array[i] = 0;
+		this->_size = n;
+		for (unsigned int i = 0; i < this->_size; i++)
+			this->_array[i] = T();
 		return;
 	}
 
@@ -61,27 +58,27 @@ class Array
 			delete [] this->_array;
 		this->_size = rhs._size;
 		this->_array = new T[rhs._size];
-		for (int i = 0; i < rhs._size; i++)
+		for (unsigned int i = 0; i < rhs._size; i++)
 			this->_array[i] = rhs._array[i];
 		return (*this);
 	}
 
-	T	&operator[](int const index) const
+	T	&operator[](unsigned int const index) const
 	{
-		if (index < 0 || index > this->_size || index == this->_size)
+		if (index < 0 || index >= this->_size)
 			throw std::overflow_error("Overflow Error");
 		return (this->_array[index]);
 	}
 
-	int	size(void) const
+	unsigned int	size(void) const
 	{
 		return (this->_size);
 	}
 
 	private :
 
-	int	_size;
-	T *_array;
+	unsigned int	_size;
+	T 				*_array;
 };
 
 #endif

@@ -15,10 +15,10 @@
 
 #include <iostream>
 
-template<typename T, typename U>
-void	iter(T *address, U size, void (*function)(T const &elem))
+template<typename T>
+void	iter(T *address, long int size, void (*function)(T const &elem))
 {
-	for (U i = 0; i < size; i++)
+	for (long int i = 0; i < size; i++)
 		function(address[i]);
 	return;
 }
