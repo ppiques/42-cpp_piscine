@@ -12,6 +12,8 @@
 
 #include "scalar.hpp"
 
+// We make use of static casts here because we already know what type we are casting from and to
+
 Scalar::Scalar()
 {
 	this->_dot = false;
@@ -66,10 +68,20 @@ Scalar::~Scalar()
 
 Scalar &Scalar::operator=(const Scalar &rhs)
 {
+	this->_dot = rhs._dot;
+	this->_notOnlyZero = rhs._notOnlyZero;
+	this->_dotFirst = rhs._dotFirst;
+	this->_error = rhs._error;
+	this->_valueLen = rhs._valueLen;
+	this->_floatEdgeCases = rhs._floatEdgeCases;
+	this->_doubleEdgeCases = rhs._doubleEdgeCases;
+	this->_errorValueInt = rhs._errorValueInt;
+	this->_errorValueChar = rhs._errorValueChar;
 	this->_valueInt = rhs._valueInt;
 	this->_valueChar = rhs._valueChar;
 	this->_valueFloat = rhs._valueFloat;
 	this->_valueDouble = rhs._valueDouble;
+	this->_srcValue = rhs._srcValue;
 	return (*this);
 }
 
@@ -158,51 +170,6 @@ void	Scalar::setDouble(char const *value)
 		this->_valueDouble = static_cast<double>(*value);
 }
 
-bool	Scalar::setEdgeCases(std::string const &value)
-{
-	std::string	floatEdgeCases[] =
-	{
-		"inff",
-		"+inff",
-		"-inff",
-		"nanf"
-	};
-	std::string	doubleEdgeCases[] =
-	{
-		"inf",
-		"+inf",
-		"-inf",
-		"nan"
-	};
-	for (int i = 0; i < 4; i++)
-	{
-		if (floatEdgeCases[i] == value || doubleEdgeCases[i] == value)
-		{
-			this->_floatEdgeCases = floatEdgeCases[i];
-			this->_doubleEdgeCases = doubleEdgeCases[i];
-			return (true);
-		}
-	}
-	return (false);
-}
-
-bool	Scalar::isDigit(char c) const
-{
-	if (c >= '0' && c <= '9')
-		return (true);
-	return (false);
-}
-
-int		Scalar::scalarStrlen(char *str) const
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
 void	Scalar::printInt(void) const
 {
 	std::cout << "int : ";
@@ -257,53 +224,4 @@ void	Scalar::printDouble(void) const
 	else
 		std::cout << this->_valueDouble << ".0" << std::endl;
 	return;
-}
-
-void	Scalar::findDot(void)
-{
-	int	fCount = 0;
-
-	for (int i = 0; this->_srcValue[i] != '\0'; i++)
-	{
-		if (this->_srcValue[i] == '.')
-		{
-			this->_dot = true;
-			i++;
-			while (this->_srcValue[i] != '\0' && (isDigit(this->_srcValue[i]) == true || this->_srcValue[i] == 'f'))
-			{
-				if (this->_srcValue[i] != '\0' && this->_srcValue[i] != 'f' && this->_srcValue[i] != '0')
-					this->_notOnlyZero = true;
-				if (this->_srcValue[i] == 'f')
-					fCount++;
-				i++;
-			}
-			if (this->_srcValue[i] == '.')
-				throw ScalarError();
-			if (fCount > 1)
-				throw ScalarError();
-			return;
-		}
-	}
-}
-
-void	Scalar::errorHandler(char const *value)
-{
-	bool asciiChar = false;
-	int fCount = 0;
-
-	for (int i = 0; value[i] != '\0'; i++)
-	{
-		if (isDigit(value[i]) == false)
-		{
-			if (value[i] != '.' && value[i] != 'f' && value[i] != '-' && (value[i] >= 32 && value[i] <= 126))
-				asciiChar = true;
-			if (value[i] == 'f')
-				fCount++;
-		}
-		if (asciiChar == true && i >= 1)
-			throw ScalarError();
-		if (fCount > 1)
-			throw ScalarError();
-		this->_valueLen += 1;
-	}
 }

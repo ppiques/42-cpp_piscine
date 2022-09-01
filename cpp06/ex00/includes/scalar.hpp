@@ -35,7 +35,6 @@ class Scalar
 	bool	setEdgeCases(std::string const &value);
 
 	bool	isDigit(char c) const;
-	int		scalarStrlen(char *str) const;
 	
 	void	printInt(void) const;
 	void	printChar(void) const;

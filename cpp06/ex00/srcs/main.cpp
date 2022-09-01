@@ -28,8 +28,8 @@ int	main(int argc, char **argv)
 	try
 	{
 		Scalar scalar1(argv[1]);
-		scalar1.printInt();
 		scalar1.printChar();
+		scalar1.printInt();
 		scalar1.printFloat();
 		scalar1.printDouble();
 	}
