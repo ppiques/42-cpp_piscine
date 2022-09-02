@@ -22,7 +22,7 @@ typename T::iterator	easyfind(T &container, int i)
 {
 	typename T::iterator	ret;
 
-	ret = find(container.begin(), container.end(), i);
+	ret = find(container.begin(), container.end(), i); // https://cplusplus.com/reference/algorithm/find/
 	return (ret);
 }
 

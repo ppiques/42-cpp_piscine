@@ -34,7 +34,8 @@ class Span
 
 	void	addNumber(int value);
 	void	addRandomNumber(int min, int max);
-	void	addRandomNumbers(int min, int max, int nb);
+	void	addRandomNumbers(int min, int max, unsigned int nb);
+	void	addRange(std::vector<int>::iterator start, std::vector<int>::iterator end);
 
 	private :
 

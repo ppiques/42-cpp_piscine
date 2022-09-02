@@ -37,7 +37,12 @@ class MutantStack : public std::stack<T>
 		return;
 	}
 
-	MutantStack	&operator=(const MutantStack &rhs);
+	MutantStack	&operator=(const MutantStack &rhs)
+	{
+		if (this == &rhs)
+			return (*this);
+		this->c = rhs.c;
+	}
 	
 	typedef typename std::stack<T>::container_type::iterator iterator;
 

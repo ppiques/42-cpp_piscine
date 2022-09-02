@@ -50,12 +50,12 @@ int main()
 
 	std::list<int> lst;
 
-	lst.push_front(5);
-	lst.push_front(17);
+	lst.push_back(5);
+	lst.push_back(17);
 
-	std::cout << "lst.front : " << lst.front() << std::endl;
+	std::cout << "lst.back : " << lst.back() << std::endl;
 
-	lst.pop_front();
+	lst.pop_back();
 
 	std::cout << "lst.size : " << lst.size() << std::endl;
 

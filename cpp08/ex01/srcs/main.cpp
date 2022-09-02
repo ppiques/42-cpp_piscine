@@ -68,11 +68,31 @@ int	main()
 
 	try
 	{
-		Span bigsp = Span(10);
+		Span bigsp = Span(10000);
 		bigsp.addRandomNumbers(0, 100000, 10000);
 		
 		std::cout << "big-shortestSpan : " << bigsp.shortestSpan() << std::endl;
 		std::cout << "big-longestSpan : " << bigsp.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+	std::cout << std::endl;
+
+	try
+	{
+		Span rangesp = Span(4);
+		std::vector<int>	temp;
+
+		temp.push_back(1);
+		temp.push_back(5);
+		temp.push_back(15);
+		rangesp.addRange(temp.begin(), temp.end());
+		
+		std::cout << "range-shortestSpan : " << rangesp.shortestSpan() << std::endl;
+		std::cout << "range-longestSpan : " << rangesp.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{

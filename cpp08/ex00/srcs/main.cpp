@@ -30,7 +30,11 @@ int	main()
 
 	iterator = easyfind(vector, 40);
 	printIterator(iterator, vector.end());
+	iterator = easyfind(vector, 10);
+	printIterator(iterator, vector.end());
 	iterator = easyfind(vector, 42);
+	printIterator(iterator, vector.end());
+	iterator = easyfind(vector, 70);
 	printIterator(iterator, vector.end());
 
 	return (0);
