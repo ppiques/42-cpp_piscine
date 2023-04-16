@@ -13,27 +13,31 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-#include <iostream>
-#include <chrono>
 #include <vector>
 #include <list>
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 class PmergeMe 
 {
 	public:
 		PmergeMe();
-		PmergeMe(const std::string &input);
+		PmergeMe(const char **argv, int argc);
 		PmergeMe(const PmergeMe &cpy);
 		~PmergeMe();
 
 		PmergeMe& operator=(const PmergeMe& rhs);
 
-		void sortWithVector();
-		void sortWithList();
+		void sortWithVector(std::vector<int>& v, int left, int right);
+		void sortWithList(std::list<int>::iterator left, std::list<int>::iterator right);
+		void listMerge(std::list<int>::iterator left, std::list<int>::iterator mid, std::list<int>::iterator right);
+		void vectorMerge(std::vector<int>& v, int left, int mid, int right);
+		void addElements(const std::vector<int>& v);
+        void addElements(const std::list<int>& l);
 
-	private:
-		std::vector<int> _dataVec;
-		std::list<int> _dataList;
+		std::vector<int>	vect;
+		std::list<int>		list;
 };
 
 #endif

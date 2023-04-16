@@ -43,39 +43,41 @@ RPN &RPN::operator=(const RPN &rhs)
 int RPN::operation()
 {	
 	std::istringstream	iss(_input);
-	std::string			token;
+	std::string			sign;
+	int					a;
+	int					b;
 
-	while (iss >> token) 
+	while (iss >> sign) 
 	{
-		if (token == "+") 
+		if (sign == "+") 
 		{
-			int b = _stack.top();
+			b = _stack.top();
 			_stack.pop();
-			int a = _stack.top();
+			a = _stack.top();
 			_stack.pop();
 			_stack.push(a + b);
 		} 
-		else if (token == "-") 
+		else if (sign == "-") 
 		{
-			int b = _stack.top();
+			b = _stack.top();
 			_stack.pop();
-			int a = _stack.top();
+			a = _stack.top();
 			_stack.pop();
 			_stack.push(a - b);
 		} 
-		else if (token == "*") 
+		else if (sign == "*") 
 		{
-			int b = _stack.top();
+			b = _stack.top();
 			_stack.pop();
-			int a = _stack.top();
+			a = _stack.top();
 			_stack.pop();
 			_stack.push(a * b);
 		} 
-		else if (token == "/") 
+		else if (sign == "/") 
 		{
-			int b = _stack.top();
+			b = _stack.top();
 			_stack.pop();
-			int a = _stack.top();
+			a = _stack.top();
 			_stack.pop();
 			if (b == 0) 
 				{
@@ -87,7 +89,7 @@ int RPN::operation()
 		else 
 		{
 			int value;
-			std::istringstream(token) >> value;
+			std::istringstream(sign) >> value;
 			_stack.push(value);
 		}
 	}
