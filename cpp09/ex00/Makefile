@@ -19,6 +19,7 @@ INC_DIR		= includes
 OBJ_DIR		= .objs
 
 FILE_NAMES	+= main.cpp
+FILE_NAMES	+= BitcoinExchange.cpp
 
 OBJ_NAMES	= ${FILE_NAMES:.cpp=.o}
 OBJS		= $(addprefix $(OBJ_DIR)/, $(OBJ_NAMES))
