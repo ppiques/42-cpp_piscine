@@ -46,6 +46,7 @@ void RPN::operation()
 	std::string			sign;
 	int					a;
 	int					b;
+	int					value;
 
 	if (!_input.find_first_not_of("0123456789+-*/ "))
 	{
@@ -113,7 +114,6 @@ void RPN::operation()
 		} 
 		else 
 		{
-			int value;
 			std::istringstream(sign) >> value;
 			_stack.push(value);
 		}
