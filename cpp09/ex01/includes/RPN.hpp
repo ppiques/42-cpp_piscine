@@ -28,7 +28,7 @@ class RPN
 
 		RPN &operator=(const RPN &rhs);
 
-		int operation();
+		void operation();
 
 	private:
 		std::string 	_input;

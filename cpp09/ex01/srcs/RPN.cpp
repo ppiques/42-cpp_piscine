@@ -40,19 +40,29 @@ RPN &RPN::operator=(const RPN &rhs)
 	return (*this);
 }
 
-int RPN::operation()
+void RPN::operation()
 {	
 	std::istringstream	iss(_input);
 	std::string			sign;
 	int					a;
 	int					b;
 
+	if (!_input.find_first_not_of("0123456789+-*/ "))
+	{
+		std::cout << "Error: wrong input" << std::endl;
+		return;
+	}
 	while (iss >> sign) 
 	{
 		if (sign == "+") 
 		{
 			b = _stack.top();
 			_stack.pop();
+			if (_stack.empty())
+			{
+				std::cout << "Error" << std::endl;
+				return;
+			}
 			a = _stack.top();
 			_stack.pop();
 			_stack.push(a + b);
@@ -61,6 +71,11 @@ int RPN::operation()
 		{
 			b = _stack.top();
 			_stack.pop();
+			if (_stack.empty())
+			{
+				std::cout << "Error" << std::endl;
+				return;
+			}
 			a = _stack.top();
 			_stack.pop();
 			_stack.push(a - b);
@@ -69,6 +84,11 @@ int RPN::operation()
 		{
 			b = _stack.top();
 			_stack.pop();
+			if (_stack.empty())
+			{
+				std::cout << "Error" << std::endl;
+				return;
+			}
 			a = _stack.top();
 			_stack.pop();
 			_stack.push(a * b);
@@ -77,12 +97,17 @@ int RPN::operation()
 		{
 			b = _stack.top();
 			_stack.pop();
+			if (_stack.empty())
+			{
+				std::cout << "Error" << std::endl;
+				return;
+			}
 			a = _stack.top();
 			_stack.pop();
 			if (b == 0) 
 				{
 					std::cerr << "Error : cannot divide by 0" << std::endl;
-					return -1;
+					return;
 				}
 			_stack.push(a / b);
 		} 
@@ -93,5 +118,6 @@ int RPN::operation()
 			_stack.push(value);
 		}
 	}
-	return _stack.top();
+	std::cout << _stack.top() << std::endl;
+	return;
 }

@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
 	}
 
 	RPN rpn(argv[1]);
-	int result = rpn.operation();
-	std::cout << result << std::endl;
+	rpn.operation();
 	return 0;
 }
