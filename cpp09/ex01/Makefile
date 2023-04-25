@@ -25,7 +25,7 @@ OBJ_NAMES	= ${FILE_NAMES:.cpp=.o}
 OBJS		= $(addprefix $(OBJ_DIR)/, $(OBJ_NAMES))
 
 CXX				= c++
-CXXFLAGS		= -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 all:		${NAME}
 

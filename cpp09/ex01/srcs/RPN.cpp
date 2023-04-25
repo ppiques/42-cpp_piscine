@@ -48,7 +48,7 @@ void RPN::operation()
 	int					b;
 	int					value;
 
-	if (!_input.find_first_not_of("0123456789+-*/ "))
+	if (_input.find_first_not_of("0123456789+-*/ ") != std::string::npos)
 	{
 		std::cout << "Error: wrong input" << std::endl;
 		return;
