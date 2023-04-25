@@ -68,9 +68,11 @@ int	BitcoinExchange::parseInput(const char *file_path)
 		while (std::getline(_input_file, line))
 		{
 			std::stringstream ss(line);
+			if (line.length() == 1)
+				continue;
 			std::getline(ss, date, '|');
 			std::getline(ss, value);
-			if (value.empty() || std::strstr(date.c_str(), "date"))
+			if (value.empty() || date.empty() || std::strstr(date.c_str(), "date"))
 				continue;
 			else
 				this->_input.insert(std::pair<std::string, float>(date, atof(value.c_str())));
@@ -96,8 +98,12 @@ bool BitcoinExchange::_checkDateFormat(const std::string &date)
 		return false;
 	if (day < 1 || day > 31)
 		return false;
-	if (month == 2 && day > 29)
+	if (month == 2 && day >= 29)
+	{
+		if (((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) && day == 29)
+			return true;
 		return false;
+	}
 	if (month == 4 && day > 30)
 		return false;
 	if (month == 6 && day > 30)
@@ -131,6 +137,8 @@ void BitcoinExchange::printOutput()
 			std::cout << "Error: not a positive number." << std::endl;
 		else if (it->second > 1000.00)
 			std::cout << "Error: too large a number." << std::endl;
+		else if (!it->second)
+			std::cout << "Error: Wrong input" << std::endl;
 		else
 			std::cout << it->first << " -> " << it->second << " = " << _calculateValue(it->second, it->first) << std::endl;
 	}
