@@ -51,7 +51,7 @@ int main(int argc, const char **argv)
     merger.sortWithList(merger.list.begin(), merger.list.end());
     clock_t list_end_time = clock();
 
-    // std::cout << "After list merge sort: ";
+    // std::cout << "After: ";
     // for (std::list<int>::iterator it = merger.list.begin(); it != merger.list.end(); it++)
     //     std::cout << *it << " ";
     // std::cout << std::endl;

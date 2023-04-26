@@ -150,13 +150,14 @@ void PmergeMe::vectorMerge(std::vector<int> &v, int left, int mid, int right)
 
 void PmergeMe::sortWithVector(std::vector<int> &v, int left, int right)
 {
-	if ((right - left) <= 1)
-		return;
-	int mid = left + (right - left) / 2;
+	if (left < right)
+	{
+		int mid = left + (right - left) / 2;
 
-	sortWithVector(v, left, mid);
-	sortWithVector(v, mid + 1, right);
-	vectorMerge(v, left, mid, right);	
+		sortWithVector(v, left, mid);
+		sortWithVector(v, mid + 1, right);
+		vectorMerge(v, left, mid, right);	
+	}
 }
 
 void PmergeMe::addElements(const std::vector<int> &v)

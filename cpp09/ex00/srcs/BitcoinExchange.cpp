@@ -35,7 +35,9 @@ BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange &rhs)
 
 int BitcoinExchange::parseDatabase()
 {
-	_csv_file.open("data.csv", std::ifstream::in);
+	_csv_file.open("input.csv", std::ifstream::in);
+	if (!_csv_file.good())
+		_csv_file.open("data.csv", std::ifstream::in);
 	if (_csv_file.good())
 	{
 		std::string line;
@@ -44,9 +46,9 @@ int BitcoinExchange::parseDatabase()
 		while (std::getline(_csv_file, line))
 		{
 			std::stringstream ss(line);
-			std::getline(ss, date, ',');
+			std::getline(ss, date, '|');
 			std::getline(ss, value);
-			if (value.find_first_not_of("0123456789-,. ") != std::string::npos)
+			if (value.find_first_not_of("0123456789-,.| ") != std::string::npos)
 				continue;
 			if (date.find_first_not_of("0123456789- ") != std::string::npos)
 				continue;

@@ -53,6 +53,11 @@ void RPN::operation()
 		std::cout << "Error: wrong input" << std::endl;
 		return;
 	}
+	if (_input.find("  ") != std::string::npos)
+	{
+		std::cout << "Error: wrong input" << std::endl;
+		return;
+	}
 	while (iss >> sign) 
 	{
 		if (sign == "+") 
