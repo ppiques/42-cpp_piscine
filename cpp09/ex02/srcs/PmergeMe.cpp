@@ -39,7 +39,7 @@ PmergeMe::~PmergeMe()
 {
 }
 
-PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) 
+PmergeMe& PmergeMe::operator=(const PmergeMe &rhs) 
 {
 	if (this != &rhs)
 	{
@@ -68,19 +68,16 @@ void PmergeMe::listMerge(std::list<int>::iterator left, std::list<int>::iterator
 			j++;
 		}
 	}
-
 	while (i != mid)
 	{
 		tmpList.push_back(*i);
 		i++;
 	}
-
 	while (j != right)
 	{
 		tmpList.push_back(*j);
 		j++;
-	}
-		
+	}	
 	i = left;
 	std::list<int>::iterator it = tmpList.begin();
 	while (i != right)
@@ -94,9 +91,7 @@ void PmergeMe::listMerge(std::list<int>::iterator left, std::list<int>::iterator
 void PmergeMe::sortWithList(std::list<int>::iterator left, std::list<int>::iterator right)
 {
 	if (std::distance(left, right) <= 1)
-	{
 		return;
-	}
 
 	std::list<int>::iterator mid = left;
 	std::advance(mid, std::distance(left, right) / 2);
@@ -106,7 +101,7 @@ void PmergeMe::sortWithList(std::list<int>::iterator left, std::list<int>::itera
 	listMerge(left, mid, right);
 }
 
-void PmergeMe::vectorMerge(std::vector<int>& v, int left, int mid, int right)
+void PmergeMe::vectorMerge(std::vector<int> &v, int left, int mid, int right)
 {
 	int i;
 	int j;
@@ -141,7 +136,6 @@ void PmergeMe::vectorMerge(std::vector<int>& v, int left, int mid, int right)
 		}
 		k++;
 	}
-
 	// Copy the remaining elements of L[], if there are any
 	while (i < first_half)
 	{
@@ -149,7 +143,6 @@ void PmergeMe::vectorMerge(std::vector<int>& v, int left, int mid, int right)
 		i++;
 		k++;
 	}
-
 	// Copy the remaining elements of R[], if there are any
 	while (j < second_half)
 	{
@@ -159,27 +152,23 @@ void PmergeMe::vectorMerge(std::vector<int>& v, int left, int mid, int right)
 	}
 }
 
-void PmergeMe::sortWithVector(std::vector<int>& v, int left, int right)
+void PmergeMe::sortWithVector(std::vector<int> &v, int left, int right)
 {
-	if (left < right)
-	{
-		int mid = left + (right - left) / 2;
+	if ((right - left) <= 1)
+		return;
+	int mid = left + (right - left) / 2;
 
-		// Sort first and second halves
-		sortWithVector(v, left, mid);
-		sortWithVector(v, mid + 1, right);
-
-		// Merge the sorted halves
-		vectorMerge(v, left, mid, right);
-	}
+	sortWithVector(v, left, mid);
+	sortWithVector(v, mid + 1, right);
+	vectorMerge(v, left, mid, right);	
 }
 
-void PmergeMe::addElements(const std::vector<int>& v)
+void PmergeMe::addElements(const std::vector<int> &v)
 {
 	vect = v;
 }
 
-void PmergeMe::addElements(const std::list<int>& l)
+void PmergeMe::addElements(const std::list<int> &l)
 {
 	list = l;
 }
