@@ -46,6 +46,10 @@ int BitcoinExchange::parseDatabase()
 			std::stringstream ss(line);
 			std::getline(ss, date, ',');
 			std::getline(ss, value);
+			if (value.find_first_not_of("0123456789-,. ") != std::string::npos)
+				continue;
+			if (date.find_first_not_of("0123456789- ") != std::string::npos)
+				continue;
 			if (value.empty() || std::strstr(date.c_str(), "date"))
 				continue;
 			else
@@ -53,7 +57,7 @@ int BitcoinExchange::parseDatabase()
 		}
 		return 0;
 	}
-	std::cerr << "Error: invalid file" << std::endl;
+	std::cerr << "Error: invalid data file" << std::endl;
 	return 1;
 }
 
@@ -79,7 +83,7 @@ int	BitcoinExchange::parseInput(const char *file_path)
 		}
 		return 0;
 	}
-	std::cerr << "Error: invalid file" << std::endl;
+	std::cerr << "Error: invalid input file" << std::endl;
 	return 1;
 }
 

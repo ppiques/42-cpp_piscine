@@ -22,7 +22,8 @@ int main(int argc, char **argv)
 
 	BitcoinExchange btc;
 
-	btc.parseDatabase();
+	if (btc.parseDatabase() == 1)
+		return 1;
 	btc.parseInput(argv[1]);
 	btc.printOutput();
 
