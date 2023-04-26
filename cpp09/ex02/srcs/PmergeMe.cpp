@@ -112,13 +112,11 @@ void PmergeMe::vectorMerge(std::vector<int> &v, int left, int mid, int right)
 	std::vector<int> L(first_half);
 	std::vector<int> R(second_half);
 
-	// Put first_half and second_half in their corresponding arrays
 	for (i = 0; i < first_half; i++)
 		L[i] = v[left + i];
 	for (j = 0; j < second_half; j++)
 		R[j] = v[mid + 1 + j];
 
-	// Merge L and R back into v[left..right]
 	i = 0;
 	j = 0;
 	k = left;
@@ -136,14 +134,12 @@ void PmergeMe::vectorMerge(std::vector<int> &v, int left, int mid, int right)
 		}
 		k++;
 	}
-	// Copy the remaining elements of L[], if there are any
 	while (i < first_half)
 	{
 		v[k] = L[i];
 		i++;
 		k++;
 	}
-	// Copy the remaining elements of R[], if there are any
 	while (j < second_half)
 	{
 		v[k] = R[j];
