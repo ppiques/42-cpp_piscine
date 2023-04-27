@@ -50,12 +50,12 @@ void RPN::operation()
 
 	if (_input.find_first_not_of("0123456789+-*/ ") != std::string::npos)
 	{
-		std::cout << "Error: wrong input" << std::endl;
+		std::cout << "Error" << std::endl;
 		return;
 	}
 	if (_input.find("  ") != std::string::npos)
 	{
-		std::cout << "Error: wrong input" << std::endl;
+		std::cout << "Error" << std::endl;
 		return;
 	}
 	while (iss >> sign) 

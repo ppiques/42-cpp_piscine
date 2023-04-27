@@ -29,9 +29,11 @@ class PmergeMe
 
 		PmergeMe& operator=(const PmergeMe& rhs);
 
-		void sortWithVector(std::vector<int>& v, int left, int right);
 		void sortWithList(std::list<int>::iterator left, std::list<int>::iterator right);
+		void listInsertionSort(std::list<int>::iterator left, std::list<int>::iterator right);
 		void listMerge(std::list<int>::iterator left, std::list<int>::iterator mid, std::list<int>::iterator right);
+		void sortWithVector(std::vector<int>& v, int left, int right);
+		void vectorInsertionSort(std::vector<int> &v, int left, int right);
 		void vectorMerge(std::vector<int>& v, int left, int mid, int right);
 		void addElements(const std::vector<int>& v);
         void addElements(const std::list<int>& l);

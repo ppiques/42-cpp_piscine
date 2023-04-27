@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	if (strlen(argv[1]) == 1)
+	if (strlen(argv[1]) <= 1)
 	{
 		std::cerr << "Error" << std::endl;
 		return 1;

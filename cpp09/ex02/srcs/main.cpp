@@ -21,6 +21,12 @@ int main(int argc, const char **argv)
     }
     for (int i = 1; i < argc; i++) 
 	{
+		std::string str = "0123456789- ";
+		if (str.find(argv[i][0]) == std::string::npos)
+		{
+			std::cout << "Error: wrong input" << std::endl;
+			return 1;
+		}
         int val = std::atoi(argv[i]);
 		if (val < 0)
 		{
@@ -51,9 +57,9 @@ int main(int argc, const char **argv)
     merger.sortWithList(merger.list.begin(), merger.list.end());
     clock_t list_end_time = clock();
 
-    // std::cout << "After: ";
-    // for (std::list<int>::iterator it = merger.list.begin(); it != merger.list.end(); it++)
-    //     std::cout << *it << " ";
+	// std::cout << "After: ";
+	// for (std::list<int>::iterator it = merger.list.begin(); it != merger.list.end(); it++)
+	// std::cout << *it << " ";
     // std::cout << std::endl;
 
     double vector_time = (double)(vector_end_time - vector_start_time) / CLOCKS_PER_SEC * 1000000.00;
