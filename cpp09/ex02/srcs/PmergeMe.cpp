@@ -119,36 +119,89 @@ void PmergeMe::listMerge(std::list<int>::iterator left, std::list<int>::iterator
 	}
 }
 
-void PmergeMe::sortWithVector(std::vector<int> &v, int left, int right)
+void PmergeMe::sortWithVector(std::vector<int> &v)
 {
-    if (left >= right)
-		return;
+	int						straggler;
+	vector<vector<int> >	split_array;
 
-    int size = right - left + 1;
-    if (size <= 10)
+	if (v.size() % 2 != 0)
+	{
+		straggler = v.back();
+		v.pop_back();
+	}
+	else
+		straggler = NULL;
+
+	split_array = vectorSplitArray(v);
+	split_array = vectorSortEachPairs(split_array);
+	split_array = vectorSortSplitArray(split_array);
+}
+
+vector<vector<int> > PmergeMe::vectorSplitArray(std::vector<int> &v)
+{
+  vector<vector<int> > split_array;
+  vector<int> temp_array;
+
+  for (int i = 0; i < v.size(); i++)
+  {
+    int value = v[i];
+    int temp_length = temp_array.size();
+    if (temp_length == 1)
     {
-        vectorInsertionSort(v, left, right);
-        return;
+      temp_array.push_back(value);
+      split_array.push_back(temp_array);
+      temp_array.clear();
     }
-    int mid = left + (right - left) / 2;
+    else if (split_array.size() * 2 == v.size() - 1)
+    {
+      vector<int> new_pair;
+      new_pair.push_back(value);
+      split_array.push_back(new_pair);
+    }
+    else if (temp_length == 0)
+    {
+      temp_array.push_back(value);
+    }
+  }
+  return (split_array);
+}
 
-    sortWithVector(v, left, mid);
-    sortWithVector(v, mid + 1, right);
-    vectorMerge(v, left, mid, right);
+vector<vector<int> > PmergeMe::vectorSortEachPairs(vector<vector<int> > &split_array)
+{
+	for (int i = 0; i < split_array.size(); i++)
+	{
+		vector<int> pair = split_array[i];
+		if (pair.size() != 1 && (pair[0] > pair[1]))
+		{
+			int	j;
+			j = pair[0];
+			pair[0] = pair[1];
+			pair[1] = j;
+		}
+	}
+	return (split_array);
+}
+
+vector<vector<int> > PmergeMe::vectorSortSplitArray(vector<vector<int> &split_array)
+{
+	for (int i = 0; i < split_array.size(); i++)
+	{
+		// need recursivity
+	}
 }
 
 void PmergeMe::vectorInsertionSort(std::vector<int> &v, int left, int right)
 {
     for (int i = left + 1; i <= right; i++)
     {
-        int key = v[i];
+        int k = v[i];
         int j = i - 1;
-        while (j >= left && v[j] > key)
+        while (j >= left && v[j] > k)
         {
             v[j+1] = v[j];
             j--;
         }
-        v[j+1] = key;
+        v[j+1] = k;
     }
 }
 

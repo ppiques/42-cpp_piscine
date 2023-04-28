@@ -32,7 +32,11 @@ class PmergeMe
 		void sortWithList(std::list<int>::iterator left, std::list<int>::iterator right);
 		void listInsertionSort(std::list<int>::iterator left, std::list<int>::iterator right);
 		void listMerge(std::list<int>::iterator left, std::list<int>::iterator mid, std::list<int>::iterator right);
-		void sortWithVector(std::vector<int>& v, int left, int right);
+		void sortWithVector(std::vector<int>& v);
+
+		vector<vector<int> > vectorSplitArray(std::vector<int> &v);
+		vector<vector<int> > vectorSortEachPairs(vector<vector<int> > &split_array);
+		
 		void vectorInsertionSort(std::vector<int> &v, int left, int right);
 		void vectorMerge(std::vector<int>& v, int left, int mid, int right);
 		void addElements(const std::vector<int>& v);
