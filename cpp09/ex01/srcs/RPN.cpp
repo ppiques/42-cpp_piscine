@@ -40,6 +40,17 @@ RPN &RPN::operator=(const RPN &rhs)
 	return (*this);
 }
 
+int RPN::_checkinput()
+{
+	if (_input.find_first_not_of("0123456789+-*/ ") != std::string::npos)
+		return (-1);
+
+	if (_input.find("  ") != std::string::npos)
+		return (-1);
+
+	return (0);
+}
+
 void RPN::operation()
 {	
 	std::istringstream	iss(_input);
@@ -48,68 +59,38 @@ void RPN::operation()
 	int					b;
 	int					value;
 
-	if (_input.find_first_not_of("0123456789+-*/ ") != std::string::npos)
-	{
-		std::cout << "Error" << std::endl;
-		return;
-	}
-	if (_input.find("  ") != std::string::npos)
+	if (_checkinput() == -1)
 	{
 		std::cout << "Error" << std::endl;
 		return;
 	}
 	while (iss >> sign) 
 	{
+		if (sign.at(0) != '-' && sign.length() > 1)
+		{
+			std::cout << "Error" << std::endl;
+			return;
+		}
+		if (sign.find_first_of("+-*/") == 0 && sign.size() == 1)
+		{
+			b = _stack.top();
+			_stack.pop();
+			if (_stack.empty())
+			{
+				std::cout << "Error" << std::endl;
+				return;
+			}
+			a = _stack.top();
+			_stack.pop();
+		}
 		if (sign == "+") 
-		{
-			b = _stack.top();
-			_stack.pop();
-			if (_stack.empty())
-			{
-				std::cout << "Error" << std::endl;
-				return;
-			}
-			a = _stack.top();
-			_stack.pop();
 			_stack.push(a + b);
-		} 
 		else if (sign == "-") 
-		{
-			b = _stack.top();
-			_stack.pop();
-			if (_stack.empty())
-			{
-				std::cout << "Error" << std::endl;
-				return;
-			}
-			a = _stack.top();
-			_stack.pop();
 			_stack.push(a - b);
-		} 
 		else if (sign == "*") 
-		{
-			b = _stack.top();
-			_stack.pop();
-			if (_stack.empty())
-			{
-				std::cout << "Error" << std::endl;
-				return;
-			}
-			a = _stack.top();
-			_stack.pop();
 			_stack.push(a * b);
-		} 
 		else if (sign == "/") 
 		{
-			b = _stack.top();
-			_stack.pop();
-			if (_stack.empty())
-			{
-				std::cout << "Error" << std::endl;
-				return;
-			}
-			a = _stack.top();
-			_stack.pop();
 			if (b == 0) 
 				{
 					std::cerr << "Error : cannot divide by 0" << std::endl;
@@ -120,8 +101,18 @@ void RPN::operation()
 		else 
 		{
 			std::istringstream(sign) >> value;
+			if (value > 9)
+			{
+				std::cerr << "Error" << std::endl;
+				return;
+			}
 			_stack.push(value);
 		}
+	}
+	if (_stack.size() != 1)
+	{
+		std::cout << "Error" << std::endl;
+		return;
 	}
 	std::cout << _stack.top() << std::endl;
 	return;

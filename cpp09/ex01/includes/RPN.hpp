@@ -31,6 +31,8 @@ class RPN
 		void operation();
 
 	private:
+		int _checkinput();
+
 		std::string 	_input;
 		std::stack<int>	_stack;
 };
