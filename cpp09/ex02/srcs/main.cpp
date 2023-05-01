@@ -45,7 +45,7 @@ int main(int argc, const char **argv)
     std::cout << std::endl;
 
     clock_t vector_start_time = clock();
-    merger.sortWithVector(merger.vect, 0, n - 1);
+    merger.sortWithVector(merger.vect);
     clock_t vector_end_time = clock();
 
     std::cout << "After: ";

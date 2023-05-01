@@ -18,6 +18,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <algorithm>
 
 class PmergeMe 
 {
@@ -32,13 +33,14 @@ class PmergeMe
 		void sortWithList(std::list<int>::iterator left, std::list<int>::iterator right);
 		void listInsertionSort(std::list<int>::iterator left, std::list<int>::iterator right);
 		void listMerge(std::list<int>::iterator left, std::list<int>::iterator mid, std::list<int>::iterator right);
-		void sortWithVector(std::vector<int>& v);
-
-		vector<vector<int> > vectorSplitArray(std::vector<int> &v);
-		vector<vector<int> > vectorSortEachPairs(vector<vector<int> > &split_array);
 		
-		void vectorInsertionSort(std::vector<int> &v, int left, int right);
-		void vectorMerge(std::vector<int>& v, int left, int mid, int right);
+		void sortWithVector(std::vector<int> &v);
+		void vectorSortSplitArray(std::vector<std::vector<int> > &split_array, int length);
+		void vectorInsert(std::vector<int> &element, std::vector<std::vector<int> > &split_array, int n);
+		std::vector<std::vector<int> > vectorSplitArray(std::vector<int> &v);
+		std::vector<std::vector<int> > vectorSortEachPairs(std::vector<std::vector<int> > &split_array);
+		std::vector<int> sortIntoVect(const std::vector<std::vector<int> > &sorted_split_array, int straggler);
+		
 		void addElements(const std::vector<int>& v);
         void addElements(const std::list<int>& l);
 
