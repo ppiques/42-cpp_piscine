@@ -55,9 +55,9 @@ void RPN::operation()
 {	
 	std::istringstream	iss(_input);
 	std::string			sign;
-	int					a;
-	int					b;
-	int					value;
+	long int					a;
+	long int					b;
+	long int					value;
 
 	if (_checkinput() == -1)
 	{
@@ -73,6 +73,11 @@ void RPN::operation()
 		}
 		if (sign.find_first_of("+-*/") == 0 && sign.size() == 1)
 		{
+			if (_stack.empty())
+			{
+				std::cout << "Error" << std::endl;
+				return;
+			}
 			b = _stack.top();
 			_stack.pop();
 			if (_stack.empty())
